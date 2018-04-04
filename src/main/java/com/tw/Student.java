@@ -1,7 +1,5 @@
 package com.tw;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Student {
@@ -21,10 +19,10 @@ public class Student {
     public void add(String name, int id, Map<String,Integer> map) {
         this.name = name;
         this.id = id;
-        this.math = map.get("数学");
-        this.chinese = map.get("语文");
-        this.english = map.get("英语");
-        this.programming = map.get("编程");
+        this.math = map.get("数学") == null ? 0 : map.get("数学");
+        this.chinese = map.get("语文") == null ? 0 : map.get("语文");
+        this.english = map.get("英语") == null ? 0 : map.get("英语");
+        this.programming = map.get("编程") == null ? 0 : map.get("编程");
         setSummary();
         setAverage();
     }
