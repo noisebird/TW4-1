@@ -33,18 +33,11 @@ public class CommandReader {
             }
         } else if (flag == 1) {
             //validate the student id list
-           return Arrays.asList(arr).stream().allMatch(item -> pattern.matcher(item).matches());
+            return Arrays.asList(arr).stream().allMatch(item -> pattern.matcher(item).matches());
+        } else {
+            return pattern.matcher(inputString).matches();
         }
 
         return true;
-    }
-
-    public static void main(String[] args) throws Exception {
-        CommandReader reader = new CommandReader();
-//        System.out.println(reader.validate("12, 11", 1));
-        System.out.println(reader.read(1));
-//        System.out.println(reader.validate("张三, 121, 数学: 75, 语文: 95, 英语: 80, 编程: 80", 0));
-//        Pattern pattern = Pattern.compile("[0-9]*");
-//        System.out.println(pattern.matcher("--").matches());
     }
 }

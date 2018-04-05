@@ -73,12 +73,19 @@ public class CommandReaderTest {
         assertEquals(inputString, reader.read(1));
     }
 
-    //
     @Test
     public void shouldReturnInvalidWhenIdIsNotDigit() throws Exception {
         //格式： 学号, 学号,
         String inputString = "aa, 11";
         setInputStream(inputString);
         assertEquals("invalid", reader.read(1));
+    }
+
+    /* validate the input command 1～3 */
+    @Test
+    public void shouldReturnTheSameWhenInputDigitCommand() throws Exception {
+        String inputString = "1";
+        setInputStream(inputString);
+        assertEquals("1", reader.read(2));
     }
 }
