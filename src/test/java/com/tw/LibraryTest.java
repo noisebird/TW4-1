@@ -28,12 +28,6 @@ public class LibraryTest {
         reader = new CommandReader();
         System.setOut(new PrintStream(outContent));
     }
-    private void setInputStream(String input) throws NoSuchFieldException, IllegalAccessException {
-        Field scannerField = reader.getClass().getDeclaredField("scanner");
-        scannerField.setAccessible(true);
-        Scanner scannerWithMockedStream = new Scanner(new ByteArrayInputStream(input.getBytes()));
-        scannerField.set(reader, scannerWithMockedStream);
-    }
 
     @Test
     public void shouldPrintMainMenu() throws Exception {
