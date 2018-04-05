@@ -18,6 +18,8 @@ import static org.mockito.Matchers.anyInt;
 import static org.mockito.Mockito.*;
 
 public class LibraryTest {
+    public static final String TEST_STUDENT_INFO = "张三, 121, 数学: 75, 语文: 95, 英语: 80, 编程: 80";
+    public static final String TEST_STUDENT_INFO2 = "李四, 122, 数学: 85, 语文: 80, 英语: 70, 编程: 90";
     CommandReader reader;
     Library library;
     private ByteArrayOutputStream outContent = new ByteArrayOutputStream();
@@ -57,11 +59,19 @@ public class LibraryTest {
     }
 
     @Test
+    public void shouldReturnFalseWhenInputLessThan0() throws Exception {
+        reader = mock(CommandReader.class);
+        library = mock(Library.class);
+        when(reader.read(2)).thenReturn("-1");
+        assertFalse(library.printMainMenu());
+    }
+
+    @Test
     public void shouldPromptMsgWhenAddStudent() throws Exception {
         reader = mock(CommandReader.class);
         library = new Library(reader, new ArrayList<>());
         when(reader.read(2)).thenReturn("1");
-        when(reader.read(0)).thenReturn("张三, 121, 数学: 75, 语文: 95, 英语: 80, 编程: 80");
+        when(reader.read(0)).thenReturn(TEST_STUDENT_INFO);
         library.printMainMenu();
         assertThat(systemOut().contains("请输入学生信息（格式：姓名, 学号, 学科: 成绩, ...），按回车提交：\n")).isTrue();
     }
@@ -70,7 +80,7 @@ public class LibraryTest {
     public void shouldReturnSuccessWhenAddInRightFormat() throws Exception {
         reader = mock(CommandReader.class);
         library = new Library(reader, new ArrayList<>());
-        when(reader.read(0)).thenReturn("张三, 121, 数学: 75, 语文: 95, 英语: 80, 编程: 80");
+        when(reader.read(0)).thenReturn(TEST_STUDENT_INFO);
         library.addStudent();
         assertThat(systemOut().endsWith("学生张三的成绩被添加\n")).isTrue();
     }
@@ -95,7 +105,7 @@ public class LibraryTest {
         reader = mock(CommandReader.class);
         library = new Library(reader, new ArrayList<>());
         when(reader.read(2)).thenReturn("1");
-        when(reader.read(0)).thenReturn("张三, 121, 数学: 75, 语文: 95, 英语: 80, 编程: 80");
+        when(reader.read(0)).thenReturn(TEST_STUDENT_INFO);
         library.printMainMenu();
         when(reader.read(2)).thenReturn("2");
         when(reader.read(1)).thenReturn("121");
@@ -114,7 +124,7 @@ public class LibraryTest {
         reader = mock(CommandReader.class);
         library = new Library(reader, new ArrayList<>());
         when(reader.read(2)).thenReturn("1");
-        when(reader.read(0)).thenReturn("张三, 121, 数学: 75, 语文: 95, 英语: 80, 编程: 80");
+        when(reader.read(0)).thenReturn(TEST_STUDENT_INFO);
         library.printMainMenu();
         when(reader.read(2)).thenReturn("2");
         when(reader.read(1)).thenReturn("121, 122");
@@ -133,10 +143,10 @@ public class LibraryTest {
         reader = mock(CommandReader.class);
         library = new Library(reader, new ArrayList<>());
         when(reader.read(2)).thenReturn("1");
-        when(reader.read(0)).thenReturn("张三, 121, 数学: 75, 语文: 95, 英语: 80, 编程: 80");
+        when(reader.read(0)).thenReturn(TEST_STUDENT_INFO);
         library.printMainMenu();
         when(reader.read(2)).thenReturn("1");
-        when(reader.read(0)).thenReturn("李四, 122, 数学: 85, 语文: 80, 英语: 70, 编程: 90");
+        when(reader.read(0)).thenReturn(TEST_STUDENT_INFO2);
         library.printMainMenu();
         when(reader.read(2)).thenReturn("2");
         when(reader.read(1)).thenReturn("121, 122");
@@ -156,7 +166,7 @@ public class LibraryTest {
         reader = mock(CommandReader.class);
         library = new Library(reader, new ArrayList<>());
         when(reader.read(2)).thenReturn("1");
-        when(reader.read(0)).thenReturn("张三, 121, 数学: 75, 语文: 95, 英语: 80, 编程: 80");
+        when(reader.read(0)).thenReturn(TEST_STUDENT_INFO);
         library.printMainMenu();
         when(reader.read(2)).thenReturn("1");
         when(reader.read(0)).thenReturn("张三, 121, 数学: 75, 语文: 95, 英语: 80, 编程: 70");

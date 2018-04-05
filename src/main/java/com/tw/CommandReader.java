@@ -16,7 +16,7 @@ public class CommandReader {
     public boolean validate(String inputString, int flag) {
         //格式：姓名, 学号, 学科: 成绩, 学科: 成绩, 学科: 成绩, 学科: 成绩（至少有一门成绩）
         String[] arr = inputString.split(", ");
-        Pattern pattern = Pattern.compile("[0-9]*");
+        Pattern pattern = Pattern.compile("-?[0-9]*");
         //validate the input studentInfo
         if (flag == 0) {
             //id is not digit
