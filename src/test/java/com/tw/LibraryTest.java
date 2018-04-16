@@ -73,4 +73,13 @@ public class LibraryTest {
         assertThat(systemOut().contains("请输入要打印的学生的学号（格式： 学号, 学号,...），按回车提交：\n")).isTrue();
     }
 
+    @Test
+    public void should_test_add_student_info_correct() throws Exception {
+        when(reader.read(2)).thenReturn("1");
+        when(reader.read(3)).thenReturn(STUDENT_INFO);
+        library.init();
+        assertThat(systemOut()).contains("学生张三的成绩被添加\n");
+    }
+
+
 }
