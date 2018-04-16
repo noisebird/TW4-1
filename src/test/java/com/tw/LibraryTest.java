@@ -49,4 +49,11 @@ public class LibraryTest {
         assertThat(library.init()).isFalse();
     }
 
+    @Test
+    public void should_test_exit() throws Exception {
+        when(reader.read(2)).thenReturn("3");
+        assertThat(library.init()).isFalse();
+    }
+
+
 }
