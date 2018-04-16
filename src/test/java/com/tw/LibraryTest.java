@@ -126,5 +126,29 @@ public class LibraryTest {
         assertThat(systemOut()).contains("请按正确的格式输入要打印的学生的学号（格式： 学号, 学号,...），按回车提交：\n");
     }
 
-
+    @Test
+    public void should_test_student_id_is_repeat() throws Exception {
+        String student = "王五,1002,数学:67,语文:88,英语:96,编程:68";
+        when(reader.read(2)).thenReturn("1");
+        when(reader.read(3)).thenReturn(STUDENT_INFO);
+        library.init();
+        when(reader.read(2)).thenReturn("1");
+        when(reader.read(3)).thenReturn(STUDENT_INFO1);
+        library.init();
+        when(reader.read(2)).thenReturn("1");
+        when(reader.read(3)).thenReturn(student);
+        library.init();
+        when(reader.read(2)).thenReturn("2");
+        when(reader.read(3)).thenReturn("1001,1002");
+        library.init();
+        assertThat(systemOut()).contains("成绩单\n" +
+                "姓名|学号|数学|语文|英语|编程|平均分|总分\n" +
+                "==============================================================================\n" +
+                "张三|1001|85|78|79|98|85.0|340\n" +
+                "王五|1002|67|88|96|68|79.75|319\n" +
+                "============================================================================= \n" +
+                "全班总分平均数：329.5\n" +
+                "全班总分中位数：329.5"
+        );
+    }
 }
