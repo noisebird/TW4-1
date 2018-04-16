@@ -1,10 +1,9 @@
 package com.tw;
 
-import java.util.*;
+import java.util.Scanner;
 
 /**
  * Created by wangjie on 2018/4/9.
  */
-public class Library {
-
+public class AquireReader {
 }
