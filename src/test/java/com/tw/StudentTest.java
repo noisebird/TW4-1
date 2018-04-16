@@ -5,7 +5,6 @@ import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
 
-
 /**
  * Created by wangjie on 2018/4/16.
  */
