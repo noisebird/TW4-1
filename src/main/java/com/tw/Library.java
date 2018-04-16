@@ -38,6 +38,29 @@ public class Library {
     private void printScore() {
 
     }
+
+    //计算中位数
+    private double calculateMidea() {
+        if (map.size() == 0) {
+            return 0;
+        }
+        List<Integer> tempList = new ArrayList<Integer>();
+        Set<String> set=map.keySet();
+        for (String id : set) {
+            tempList.add(map.get(id).getSum());
+        }
+        Collections.sort(tempList);
+        int size = tempList.size();
+        double mid = 0;
+
+        if (size > 0 && size % 2 == 0) {
+            mid = (tempList.get(size / 2 - 1) + tempList.get(size / 2)) / (double) 2;
+        } else {
+            mid = tempList.get(size / 2);
+        }
+        return mid;
+    }
+
     //添加学生信息
     private void addStudent() {
         System.out.println("请输入学生信息（格式：姓名, 学号, 学科: 成绩, ...），按回车提交：");
