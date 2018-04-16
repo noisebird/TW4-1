@@ -42,4 +42,11 @@ public class LibraryTest {
         library.init();
         assertThat(systemOut()).isEqualTo("1. 添加学生\n2. 生成成绩单\n3. 退出\n请输入你的选择（1～3）：\n");
     }
+
+    @Test
+    public void should_test_return_out_of_bound_init() throws Exception {
+        when(reader.read(2)).thenReturn("4");
+        assertThat(library.init()).isFalse();
+    }
+
 }
