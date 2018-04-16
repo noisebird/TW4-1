@@ -85,5 +85,14 @@ public class Student {
     public void setSum(int sum) {
         this.sum = sum;
     }
+    public void calculateAvg(){
+
+    }
+    public void calculateSum() {
+
+    }
+    public String printGradeInfo(){
+        return null;
+    }
 
 }
