@@ -36,7 +36,33 @@ public class Library {
 
     // 打印成绩
     private void printScore() {
+        System.out.println("请输入要打印的学生的学号（格式： 学号, 学号,...），按回车提交：");
+        String reg = "\\d+(,\\d+)*";
+        double allTotalScore = 0;
+        while (true) {
+            String input = aquireReader.read(3);
+            if (input.matches(reg)) {
+                System.out.println("成绩单\n姓名|学号|数学|语文|英语|编程|平均分|总分");
+                System.out.println("==============================================================================");
+                String[] arr = input.split(",");
+                for (String id : arr) {
+                    Set<String> set=map.keySet();
+                    if(set.contains(id)){
+                        Student student=map.get(id);
+                        System.out.println(map.get(id).printGradeInfo());
+                        allTotalScore +=student.getSum();
+                    }
 
+                }
+
+                System.out.println("============================================================================= ");
+                System.out.println("全班总分平均数：" + allTotalScore /  map.size());
+                System.out.println("全班总分中位数：" + calculateMidea());
+                break;
+            } else {
+                System.out.println("请按正确的格式输入要打印的学生的学号（格式： 学号, 学号,...），按回车提交：");
+            }
+        }
     }
 
     //计算中位数
