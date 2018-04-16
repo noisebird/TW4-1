@@ -65,4 +65,12 @@ public class LibraryTest {
 
     }
 
+    @Test
+    public void should_test_two_return_content() throws Exception {
+        when(reader.read(2)).thenReturn("2");
+        when(reader.read(3)).thenReturn("1001,1002");
+        library.init();
+        assertThat(systemOut().contains("请输入要打印的学生的学号（格式： 学号, 学号,...），按回车提交：\n")).isTrue();
+    }
+
 }
