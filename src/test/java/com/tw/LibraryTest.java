@@ -56,4 +56,13 @@ public class LibraryTest {
     }
 
 
+    @Test
+    public void should_test_one_return_content() throws Exception {
+        when(reader.read(2)).thenReturn("1");
+        when(reader.read(3)).thenReturn(STUDENT_INFO);
+        library.init();
+        assertThat(systemOut().contains("请输入学生信息（格式：姓名, 学号, 学科: 成绩, ...），按回车提交：\n")).isTrue();
+
+    }
+
 }
