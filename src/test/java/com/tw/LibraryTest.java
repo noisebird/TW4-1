@@ -81,5 +81,13 @@ public class LibraryTest {
         assertThat(systemOut()).contains("学生张三的成绩被添加\n");
     }
 
+    @Test
+    public void should_test_add_student_info_false() throws Exception {
+        when(reader.read(2)).thenReturn("1");
+        when(reader.read(3)).thenReturn("张三,1001").thenReturn("张三,1001,数学:100");
+        library.init();
+        assertThat(systemOut()).contains("请按正确的格式输入（格式：姓名, 学号, 学科: 成绩, ...）：\n");
+    }
+
 
 }
