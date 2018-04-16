@@ -89,5 +89,28 @@ public class LibraryTest {
         assertThat(systemOut()).contains("请按正确的格式输入（格式：姓名, 学号, 学科: 成绩, ...）：\n");
     }
 
+    @Test
+    public void should_test_query_student_info_list_correct() throws Exception {
+        when(reader.read(2)).thenReturn("1");
+        when(reader.read(3)).thenReturn(STUDENT_INFO);
+        library.init();
+        when(reader.read(2)).thenReturn("1");
+        when(reader.read(3)).thenReturn(STUDENT_INFO1);
+        library.init();
+
+        when(reader.read(2)).thenReturn("2");
+        when(reader.read(3)).thenReturn("1001,1002");
+        library.init();
+        assertThat(systemOut()).contains("成绩单\n" +
+                "姓名|学号|数学|语文|英语|编程|平均分|总分\n" +
+                "==============================================================================\n" +
+                "张三|1001|85|78|79|98|85.0|340\n" +
+                "李四|1002|88|74|79|68|77.25|309\n" +
+                "============================================================================= \n" +
+                "全班总分平均数：324.5\n" +
+                "全班总分中位数：324.5"
+        );
+    }
+
 
 }
