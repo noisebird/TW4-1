@@ -86,13 +86,15 @@ public class Student {
         this.sum = sum;
     }
     public void calculateAvg(){
-
+        avg= (english_score+math_score+programming_score+chinese_score)/(double)4;
     }
     public void calculateSum() {
-
+        sum = (english_score + math_score + programming_score + chinese_score);
     }
     public String printGradeInfo(){
-        return null;
+        calculateAvg();
+        calculateSum();
+        return name+SPERATOR+id+SPERATOR+math_score+SPERATOR+chinese_score+SPERATOR+english_score+SPERATOR+programming_score+SPERATOR+avg+SPERATOR+sum;
     }
 
 }
