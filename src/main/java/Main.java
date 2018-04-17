@@ -11,5 +11,8 @@ import java.util.Map;
  * Created by wangjie on 2018/4/9.
  */
 public class Main {
-
+    public static void main(String[] args) {
+        Library library =new Library(new HashMap<String, Student>(),new AquireReader());
+        library.enter();
+    }
 }
